@@ -19,7 +19,7 @@ const ProductAdmin = () => {
             rating: 0,
             price: 0,
             description: '',
-            image: ""
+            image: []
         },
         onSubmit: (data) => {
             dispatch(addProdAsync(data))
@@ -34,8 +34,9 @@ const ProductAdmin = () => {
         const file = evt.target.files[0];
         cloudinaryImgUpload(file)
             .then(response => {
-                formik.initialValues.image = response
-                console.log('',response);
+                formik.initialValues.image.push(response);
+                console.log('then, res pushed',response);
+                console.log('state', formik.initialValues.image)
             })
             .catch(err => {
                 console.log(err.message);
