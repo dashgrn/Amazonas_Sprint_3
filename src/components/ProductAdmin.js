@@ -23,6 +23,7 @@ const ProductAdmin = () => {
         },
         onSubmit: (data) => {
             dispatch(addProdAsync(data))
+            
         },
     })
 
