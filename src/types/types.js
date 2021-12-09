@@ -7,3 +7,7 @@ export const types = {
     logout: '[Auth] Logout',
     register: '[Auth] register'
 }
+
+export const typesProduct = {
+    list: '[Product] list'
+}

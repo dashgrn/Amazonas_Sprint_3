@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import {prodAdmReducer} from '../reducers/prodAdmReducer'
 import { loginReducer } from '../reducers/loginReducer';
 import { registerReducer } from '../reducers/registerReducer';
+import { prodReducer } from '../reducers/prodReducer';
 
 const composeEnhancers = (typeof window !== 'undefined' && 
 window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -10,7 +11,8 @@ window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const reducers = combineReducers({
     product: prodAdmReducer,
     login: loginReducer,
-    register: registerReducer
+    register: registerReducer,
+    productList: prodReducer
 })
 
 export const store = createStore(

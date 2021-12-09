@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { listProducts } from '../actions/prodList'
+import { ProductCards } from '../components/ProductCards'
+
 
 const Home = () => {
 
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(listProducts())
+    }, [dispatch])
 
     return (
         <div className="home">
@@ -12,6 +21,9 @@ const Home = () => {
                     alt=""
                 />
             </div>
+            <section>
+                <ProductCards />
+            </section>
         </div>
     )
 }
