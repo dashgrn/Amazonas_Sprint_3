@@ -1,12 +1,15 @@
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "@firebase/auth"
-import { google, facebook} from "../firebase/firebase"
+import { google, facebook} from "../firebase/firebaseConfig"
 import { types } from "../types/types"
 
+
+//Log with email and password
 export const login = (id, displayName) => {
     return {
         type: types.login,
         payload: {
-            id, displayName
+            id,
+            displayName
         }
     }
 }
@@ -14,11 +17,11 @@ export const login = (id, displayName) => {
 export const loginGoogle = () => {
 
     return (dispatch) => {
-        const auth = getAuth()       //* Función de FireBase que obtiene la authentication de Google y returna la info de quien se autentico
-        signInWithPopup(auth, google)  //* Es una petición, hay distintos modos de visualización de signIn
+        const auth = getAuth()       
+        signInWithPopup(auth, google) 
             .then(({ user }) => {
                 console.log(user);
-                dispatch(login(user.uid, user.displayName))  //* Manda en el dispatch login los parametros desestructurados del user
+                dispatch(login(user.uid, user.displayName)) 
             })
             .catch(err => {
                 console.log(err);
@@ -29,11 +32,11 @@ export const loginGoogle = () => {
 export const loginFacebook = () => {
 
     return (dispatch) => {
-        const auth = getAuth()       //* Función de FireBase que obtiene la authentication de Google y returna la info de quien se autentico
-        signInWithPopup(auth, facebook)  //* Es una petición, hay distintos modos de visualización de signIn
+        const auth = getAuth()       
+        signInWithPopup(auth, facebook)  
             .then(({ user }) => {
                 console.log(user);
-                dispatch(login(user.uid, user.displayName))  //* Manda en el dispatch login los parametros desestructurados del user
+                dispatch(login(user.uid, user.displayName))  
             })
             .catch(err => {
                 console.log(err);

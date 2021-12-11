@@ -26,15 +26,17 @@ const Bar = () => {
             <div className="bar_nav">
 
                 <div>
-                    <NavLink to="/prodadmin" className="nav_item" style={{textDecoration: 'none'}}>
+                    <NavLink to="/prodadmin" className="nav_item" style={{ textDecoration: 'none' }}>
                         <span className="bar_item1">Administrar</span>
                         <span className="bar_item2">Productos</span>
                     </NavLink>
                 </div>
 
-                <div className="nav_item">
-                    <span className="bar_item1">Hola, identifícate</span>
-                    <span className="bar_item2">Cuenta</span>
+                <div >
+                    <NavLink to="/login" className="nav_item" style={{ textDecoration: 'none' }}>
+                        <span className="bar_item1">Hola, identifícate</span>
+                        <span className="bar_item2">Cuenta</span>
+                    </NavLink>
                 </div>
 
                 <div className="nav_item">
