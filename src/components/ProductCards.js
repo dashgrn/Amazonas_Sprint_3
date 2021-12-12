@@ -19,13 +19,12 @@ export const ProductCards = () => {
 
     return (
         <>
-            <p>test</p>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 4, md: 3 }}>
+            <Grid container styles={{ margin: '20px' }} rowSpacing={4} columnSpacing={{ xs: 1, sm: 3, md: 3 }}>
 
                 {
                     products.map((product, index) => (
-                        <Grid key={index} item xs={6}>
-                            <Card sx={{ maxWidth: 345 }}>
+                        <Grid key={index} item xs={4}>
+                            <Card sx={{ maxWidth: 300 }}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"

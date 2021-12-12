@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import '../styles/Login.css'
 import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik';
-import { loginEmailPassword, loginGoogle, login } from '../actions/loginAction'
+import { loginEmailPassword, loginGoogle } from '../actions/loginAction'
 
 
 export const Login = () => {
@@ -17,7 +17,7 @@ export const Login = () => {
         },
         onSubmit: (data) => {
             console.log(data)
-            dispatch(login(data.email, data.password))
+            dispatch(loginEmailPassword(data.email, data.password))
             formik.resetForm()
         }
     })
@@ -39,7 +39,7 @@ export const Login = () => {
             </Link>
 
             <div className='login__container'>
-                <h1>Sign-in</h1>
+                <h1>Iniciar Sesión</h1>
 
                 <form onSubmit={formik.handleSubmit}>
 
