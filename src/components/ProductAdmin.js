@@ -1,15 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/ProductAdmin.css'
-import { TextField } from '@mui/material';
+import { IconButton, Snackbar, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { useFormik } from 'formik';
 import { cloudinaryImgUpload } from '../helpers/cloudinaryImgUpload'
 import { useDispatch } from 'react-redux';
 import { addProdAsync } from '../actions/actionProdAdm';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 const ProductAdmin = () => {
+
 
     const dispatch = useDispatch()
 
@@ -23,6 +26,10 @@ const ProductAdmin = () => {
         },
         onSubmit: (data) => {
             dispatch(addProdAsync(data))
+            handleSnack()
+            formik.resetForm()
+            formik.initialValues.image = []
+            formik.image = []
         },
     })
 
@@ -35,13 +42,46 @@ const ProductAdmin = () => {
         cloudinaryImgUpload(file)
             .then(response => {
                 formik.initialValues.image.push(response);
-                console.log('then, res pushed',response);
+                console.log('then, res pushed', response);
                 console.log('state', formik.initialValues.image)
             })
             .catch(err => {
                 console.log(err.message);
             })
     }
+
+    // Snackbar Stuff
+    const [open, setOpen] = React.useState(false);
+
+    const handleSnack = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
+    
+    const action = (
+        <React.Fragment>
+          <Button color="secondary" size="small" onClick={handleClose}>
+            Cerrar
+          </Button>
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleClose}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </React.Fragment>
+      );
+
+      
 
     return (
         <div className='prodForm'>
@@ -52,7 +92,7 @@ const ProductAdmin = () => {
                     alt='logo'
                 />
             </Link>
-            
+
             <h1>Agregar Producto</h1>
 
             <Box className='formContainer' alignItems='center' display='flex' justifyContent='center' flexDirection='column'
@@ -123,6 +163,13 @@ const ProductAdmin = () => {
 
                 </form>
             </Box>
+            <Snackbar
+                open={open}
+                autoHideDuration={2000}
+                onClose={handleClose}
+                message="Producto Agregado"
+                action={action}
+            />
         </div>
     )
 }
