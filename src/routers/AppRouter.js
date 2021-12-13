@@ -12,7 +12,7 @@ import { Grid } from '@mui/material'
 import { PublicRoutes } from './PublicRoutes'
 import { PrivateRoutes } from './PrivateRoutes'
 import { PrivateContainer } from './PrivateContainer'
-
+import {Cart} from '../components/Cart'
 
 const AppRouter = () => {
 
@@ -45,7 +45,7 @@ const AppRouter = () => {
                 margin='300px'
                 align="center"
                 justify="center"
-                direction="column">
+                >
                 <CircularProgress />
             </Grid>
         )
@@ -67,8 +67,17 @@ const AppRouter = () => {
                     </PublicRoutes>
                 } />
 
-                {/* <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<RegisterUsr />} /> */}
+                <Route path='/register' element={
+                    <PublicRoutes isAuthenticated={isLoggedIn}>
+                        <RegisterUsr />
+                    </PublicRoutes>
+                } />
+                <Route path='/cart' element={
+                    
+                        <Cart />
+                    
+                } />
+
                 <Route path='/*' element={
                     <PrivateRoutes isAuthenticated={isLoggedIn}>
                         <PrivateContainer />

@@ -1,7 +1,9 @@
-import { typesProduct } from "../types/types";
+import { typesProduct, types } from "../types/types";
+
 
 const initialState = {
     products: [],
+    query:''
 }
 
 export const prodReducer = (state = initialState, action) => {
@@ -10,8 +12,12 @@ export const prodReducer = (state = initialState, action) => {
             return {
                 products: [...action.payload]
             }
+        case types.search:
+            return {
+                products: action.payload
+            }
         default:
             return state;
     }
-    
+
 }

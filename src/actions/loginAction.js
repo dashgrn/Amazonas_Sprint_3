@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "@firebase/auth"
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "@firebase/auth"
 import { google, facebook} from "../firebase/firebaseConfig"
 import { types } from "../types/types"
 
@@ -56,5 +56,24 @@ export const loginEmailPassword = (email, password) =>{
             console.log(e)
             console.log('El usuario no existe')
         })
+    }
+}
+
+export const logOutUsrSync = () => {
+    return {
+        type: types.logout
+    }
+}
+
+export const logOutUsr = () => {
+    return (dispatch) => {
+        const auth = getAuth();
+        signOut(auth)
+            .then(() =>{
+                dispatch(logOutUsrSync())
+            })
+            .catch(err => {
+                console.log('log out err', err)
+            })
     }
 }
