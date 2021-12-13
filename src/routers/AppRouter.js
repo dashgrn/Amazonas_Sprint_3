@@ -13,6 +13,7 @@ import { PublicRoutes } from './PublicRoutes'
 import { PrivateRoutes } from './PrivateRoutes'
 import { PrivateContainer } from './PrivateContainer'
 import {Cart} from '../components/Cart'
+import { ProdDetail } from '../components/ProdDetail'
 
 const AppRouter = () => {
 
@@ -75,6 +76,11 @@ const AppRouter = () => {
                 <Route path='/cart' element={
                     
                         <Cart />
+                    
+                } />
+                <Route path='/details' element={
+                    
+                        <ProdDetail />
                     
                 } />
 
