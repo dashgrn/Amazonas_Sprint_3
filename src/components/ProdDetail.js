@@ -19,16 +19,18 @@ export const ProdDetail = () => {
     useEffect(() => {
         setSelectedItem(selectedItem => selectedItemObj(selectedItemTitle))
         console.log('selected Obj', selectedItem)
-    },[])
+    },[selectedItem])
 
     return (
         <>
-            <Card style={{margin: '20px'}} sx={{ maxWidth: 300 }}>
+        {
+            selectedItem? (
+                <Card style={{margin: '20px'}} sx={{ maxWidth: 300 }}>
 
                 <CardMedia
                     component="img"
                     height="300"
-                    image={selectedItem.image[0]}
+                    // image={selectedItem.image[0]? selectedItem.image[0] : '' }
                     alt={selectedItem.title}
                 />
                 <CardContent>
@@ -41,6 +43,12 @@ export const ProdDetail = () => {
                 </CardContent>
 
             </Card>
+            ):
+            (
+                'Debes seleccionar un Ítem'
+            )
+        }
+            
         </>
     )
 }
